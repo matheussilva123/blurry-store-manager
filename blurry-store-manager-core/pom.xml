@@ -10,6 +10,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>blurry-store-manager-core</artifactId>
+    <name>blurry-store-manager-core</name>
+    <version>${project.parent.version}</version>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
