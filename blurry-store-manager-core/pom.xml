@@ -12,6 +12,13 @@
     <artifactId>blurry-store-manager-core</artifactId>
     <name>blurry-store-manager-core</name>
     <version>${project.parent.version}</version>
+    <dependencies>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.11.2</version>
+        </dependency>
+    </dependencies>
     <packaging>jar</packaging>
 
     <properties>
