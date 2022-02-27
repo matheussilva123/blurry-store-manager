@@ -3,7 +3,6 @@ package br.com.dias.blurrystoremanager.domain;
 import lombok.Builder;
 import lombok.Getter;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +10,6 @@ import javax.persistence.GeneratedValue;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -44,7 +42,7 @@ public class Product {
         this.price = Objects.requireNonNull(price, "price can not be null");
     }
 
-    public Product(UUID id, String name, Float price) {
+    public Product(final UUID id, final String name, final  Float price) {
         this.id = id;
         this.name = name;
         this.price = price;
