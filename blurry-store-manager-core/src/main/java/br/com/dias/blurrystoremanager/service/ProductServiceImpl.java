@@ -2,17 +2,15 @@ package br.com.dias.blurrystoremanager.service;
 
 import br.com.dias.blurrystoremanager.converter.ProductConverter;
 import br.com.dias.blurrystoremanager.dto.ProductDTO;
-import br.com.dias.blurrystoremanager.exception.ProductNotCreatedException;
 import br.com.dias.blurrystoremanager.exception.ProductNotFoundException;
 import br.com.dias.blurrystoremanager.exception.ProductNotUpdatedException;
 import br.com.dias.blurrystoremanager.repository.ProductRepository;
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
 @Service
-public final class ProductServiceImpl implements ProductService {
+public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
 
@@ -28,11 +26,13 @@ public final class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDTO updateAndReturnDTO(final UUID productId, final ProductDTO productDTO) {
-        if (existsById(productId) && productId != null) {
-            final var product = productRepository.save(ProductConverter.converter(productId, productDTO));
-            return ProductConverter.convertToDTO(product);
+        if (productId != null) {
+            if (existsById(productId)) {
+                final var product = productRepository.save(ProductConverter.converter(productId, productDTO));
+                return ProductConverter.convertToDTO(product);
+            }
         }
-        throw new ProductNotUpdatedException("Product not updated");
+        throw new ProductNotUpdatedException("Product not updated, id cannot be null");
     }
 
     @Override

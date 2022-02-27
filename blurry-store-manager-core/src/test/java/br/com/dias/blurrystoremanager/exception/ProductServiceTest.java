@@ -4,7 +4,9 @@ import br.com.dias.blurrystoremanager.dto.ProductDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class ProductServiceTest {
+import java.util.UUID;
+
+public class ProductServiceTest extends AbstractProductService {
 
     @Test
     void shouldReturnExceptionWhenNameIsNull() {
@@ -22,6 +24,29 @@ public class ProductServiceTest {
         });
 
         Assertions.assertEquals("price property cannot be null", exception.getLocalizedMessage());
+    }
+
+    @Test
+    void shouldReturnProductNotFoundWhenProductIdDoesNotExist() {
+        final var productId = UUID.randomUUID();
+        final var productDTO = ProductDTO.builder().name("a").price(10F).build();
+
+        Exception exception = Assertions.assertThrows(ProductNotFoundException.class, () -> {
+            productService.updateAndReturnDTO(productId, productDTO);
+        });
+
+        Assertions.assertEquals(String.format("ProductId: %s not found", productId.toString()), exception.getLocalizedMessage());
+    }
+
+    @Test
+    void shouldReturnProductNotUpdatedExceptionWhenProductIdDoesNotExist() {
+        final var productDTO = ProductDTO.builder().name("a").price(10F).build();
+
+        Exception exception = Assertions.assertThrows(ProductNotUpdatedException.class, () -> {
+            productService.updateAndReturnDTO(null, productDTO);
+        });
+
+        Assertions.assertEquals("Product not updated, id cannot be null", exception.getLocalizedMessage());
     }
 
 }
