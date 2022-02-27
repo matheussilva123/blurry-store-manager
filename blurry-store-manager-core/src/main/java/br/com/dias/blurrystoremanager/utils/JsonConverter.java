@@ -1,4 +1,4 @@
-package br.com.dias.blurrystoremanager.configuration.database;
+package br.com.dias.blurrystoremanager.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;

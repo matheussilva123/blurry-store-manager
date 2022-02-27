@@ -1,6 +1,6 @@
 package br.com.dias.blurrystoremanager.controller;
 
-import br.com.dias.blurrystoremanager.configuration.database.JsonConverter;
+import br.com.dias.blurrystoremanager.utils.JsonConverter;
 import br.com.dias.blurrystoremanager.converter.ProductConverter;
 import br.com.dias.blurrystoremanager.domain.Product;
 import br.com.dias.blurrystoremanager.dto.ProductDTO;
