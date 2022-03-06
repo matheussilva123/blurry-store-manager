@@ -10,5 +10,6 @@ public interface ProductService {
 
     ProductDTO updateAndReturnDTO(UUID productId, ProductDTO productDTO);
 
-    Boolean existsById(final UUID productId);
+    Boolean existsById(UUID productId);
+
 }

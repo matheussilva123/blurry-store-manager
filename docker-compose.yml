@@ -11,3 +11,15 @@ services:
       - 5432:5432
     volumes:
       - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+  localstack:
+    container_name: "${LOCALSTACK_DOCKER_NAME-localstack}"
+    image: localstack/localstack
+    hostname: localstack
+    ports:
+      - 4566:4566
+      - 4571:4571
+    environment:
+      - SERVICES=sqs,sns
+    volumes:
+      - ./data:/tmp/localstack
+      - "/var/run/docker.sock:/var/run/docker.sock"
